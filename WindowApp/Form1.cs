@@ -31,7 +31,7 @@ namespace WindowApp
             StartAsync(word, 8, 3, 5);
         }
 
-        public void StartAsync(string word, int count, int distance, int howManyChanges)
+        private void StartAsync(string word, int count, int distance, int howManyChanges)
         {
             Task.Run(() =>
             {
@@ -59,19 +59,25 @@ namespace WindowApp
 
             if (isGood)
             {
-                tbText.BackColor = Color.Green;
+                AppendTextBoxes(tbList.Text, Color.Green);
             }
             else
             {
                 var list = "";
-                tbText.BackColor = Color.Red;
-                foreach (var item in result)
-                    list+=(item+"\n");
-                AppendTextBox(list);
+                if (result.Count != 0)
+                {
+                    foreach (var item in result)
+                        list += (item + "\r\n");
+                    AppendTextBoxes(list,Color.Red);
+                }
+                else
+                {
+                    AppendTextBoxes("Brak", Color.Red);
+                }
             }
         }
 
-        public static void GetDictionary(out Dictionary dictionary)
+        private static void GetDictionary(out Dictionary dictionary)
         {
             ISerializer serializer = new ProtocolBuffersSerializer();
             var watch = new Stopwatch();
@@ -95,14 +101,15 @@ namespace WindowApp
             Console.WriteLine("Wczytano słownik - czas: {0} ms", 1000.0 * watch.ElapsedTicks / Stopwatch.Frequency);
         }
 
-        public void AppendTextBox(string value)
+        private void AppendTextBoxes(string value,Color col)
         {
             if (InvokeRequired)
             {
-                this.Invoke(new Action<string>(AppendTextBox), new object[] { value });
+                this.Invoke(new Action<string,Color>(AppendTextBoxes), new object[] { value, col });
                 return;
             }
-            tbList.Text = value;
+            tbList.Text += value;
+            tbText.BackColor = col;
         }
     }
 }
