@@ -5,10 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using testConsoleApp.DictionaryClasses;
-using testConsoleApp.Serializers;
+using SimilarWordsFinder.DictionaryClasses;
+using SimilarWordsFinder.Serializers;
 
-namespace testConsoleApp
+namespace SimilarWordsFinder
 {
     class Program
     {
@@ -35,7 +35,7 @@ namespace testConsoleApp
             if (!File.Exists(@"Dictionary\serialized"))
             {
                 watch.Start();
-                dictionary = new Dictionary();
+                dictionary = new Dictionary(@"Dictionary\words.txt");
                 watch.Stop();
 
                 var data = serializer.Serialize<Dictionary>(dictionary);

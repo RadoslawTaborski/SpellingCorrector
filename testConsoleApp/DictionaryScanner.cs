@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using testConsoleApp.DictionaryClasses;
+using SimilarWordsFinder.DictionaryClasses;
 using System.Text;
 using System.Threading.Tasks;
-using testConsoleApp.Tools;
+using SimilarWordsFinder.Tools;
 
-namespace testConsoleApp
+namespace SimilarWordsFinder
 {
     public static class DictionaryScanner
     {

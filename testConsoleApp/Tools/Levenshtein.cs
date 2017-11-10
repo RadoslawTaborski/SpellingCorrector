@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace testConsoleApp.Tools
+namespace SimilarWordsFinder.Tools
 {
     public static class Levenshtein
     {

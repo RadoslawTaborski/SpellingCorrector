@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace testConsoleApp
+namespace SimilarWordsFinder
 {
     public static class StringExtender
     {

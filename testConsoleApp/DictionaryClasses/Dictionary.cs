@@ -7,7 +7,7 @@ using System.IO;
 using ProtoBuf;
 
 
-namespace testConsoleApp.DictionaryClasses
+namespace SimilarWordsFinder.DictionaryClasses
 {
     [ProtoContract(SkipConstructor = true)]
     public class Dictionary
@@ -23,10 +23,17 @@ namespace testConsoleApp.DictionaryClasses
         #endregion
 
         #region Public
-        public Dictionary()
+        public Dictionary(string path)
         {
-            var words = File.ReadAllLines(@"Dictionary\words.txt");
-            SetOrder(words);
+            if (File.Exists(path))
+            {
+                var words = File.ReadAllLines(path);
+                SetOrder(words);
+            }
+            else
+            {
+                throw new FileNotFoundException();
+            }
         }
 
         public List<string> GetWordsByLength(int length)

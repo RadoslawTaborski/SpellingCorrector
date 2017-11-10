@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace testConsoleApp.Tools
+namespace SimilarWordsFinder.Tools
 {
     public static class LetterChanger
     {

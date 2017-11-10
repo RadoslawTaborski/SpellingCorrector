@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace testConsoleApp.DictionaryClasses
+namespace SimilarWordsFinder.DictionaryClasses
 {
     [ProtoContract(SkipConstructor = true)]
-    public class SortedWords
+    class SortedWords
     {
         #region Properties
         [ProtoMember(1)]

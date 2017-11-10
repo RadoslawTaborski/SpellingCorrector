@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace testConsoleApp.Tools
+namespace SimilarWordsFinder.Tools
 {
     public static class SpaceAdder
     {

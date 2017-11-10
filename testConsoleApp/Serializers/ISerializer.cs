@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace testConsoleApp.Serializers
+namespace SimilarWordsFinder.Serializers
 {
     public interface ISerializer
     {

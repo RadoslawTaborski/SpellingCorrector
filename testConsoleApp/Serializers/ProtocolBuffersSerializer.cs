@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ProtoBuf;
 using System.IO;
 
-namespace testConsoleApp.Serializers
+namespace SimilarWordsFinder.Serializers
 {
     public class ProtocolBuffersSerializer : ISerializer
     {

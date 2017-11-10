@@ -1,0 +1,15 @@
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\bin\Debug\WindowApp.exe.config
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\bin\Debug\WindowApp.exe
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\bin\Debug\WindowApp.pdb
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\bin\Debug\SimilarWordsFinder.dll
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\bin\Debug\protobuf-net.dll
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\bin\Debug\SimilarWordsFinder.pdb
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\bin\Debug\SimilarWordsFinder.dll.config
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\bin\Debug\protobuf-net.xml
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\obj\Debug\WindowAppDemo.csprojResolveAssemblyReference.cache
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\obj\Debug\WindowApp.Form1.resources
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\obj\Debug\WindowApp.Properties.Resources.resources
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\obj\Debug\WindowAppDemo.csproj.GenerateResource.Cache
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\obj\Debug\WindowAppDemo.csproj.CoreCompileInputs.cache
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\obj\Debug\WindowApp.exe
+E:\PWr\magisterskie\Semestr_II\Proj. syst. w j. nat\Projekt\testConsoleApp\WindowApp\obj\Debug\WindowApp.pdb
