@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace testConsoleApp
+namespace testConsoleApp.Tools
 {
     public static class LetterChanger
     {
@@ -73,45 +73,39 @@ namespace testConsoleApp
             return newText;
         }
 
-        public static List<KeyValuePair<string, int>> Start(string word)
+        public static List<KeyValuePair<string, int>> Start(string word, int howManyChanges)
         {
             Boolean[] bools;
             KeyValuePair<string, int> variant;
-            // foreach (var b in bools)
-            // Console.WriteLine(b);
-            var result = new List<KeyValuePair<string,int>>();
+            var result = new List<KeyValuePair<string, int>>();
             List<KeyValuePair<string, int>> tmp = null;
-            result.Add(new KeyValuePair<string, int>(word,0));
+            result.Add(new KeyValuePair<string, int>(word, 0));
             foreach (var item in _letterPairs)
             {
-                //Console.WriteLine("!!!!!!!!!!!!!!!!!!!!" + item.Key + " " + item.Value);
                 tmp = new List<KeyValuePair<string, int>>();
                 for (var z = 0; z < result.Count; ++z)
                 {
                     var copy = result.ElementAt(z);
-                    // Console.WriteLine("Obrót: " +z+" "+copy);
                     for (var j = 0; j < Math.Pow(Regex.Matches(copy.Key, item.Key).Count, 2); ++j)
                     {
-                        //Console.WriteLine("Obrót: "+j);
                         variant = copy;
+                        if (variant.Value > howManyChanges)
+                            break;
                         var howMany = 0;
                         bools = ConvertByteToBoolArray((byte)(j + 1));
                         for (int i = 1; i <= Regex.Matches(copy.Key, item.Key).Count; ++i)
                         {
-
                             if (bools[i - 1] == true)
                             {
-                                //Console.WriteLine("Bool: " + i);
-                                variant = new KeyValuePair<string, int>(ChangeLetter(variant.Key, item.Key, item.Value, 1, variant.Key.NthIndexOf(item.Key, i - howMany)),variant.Value+1);
+                                variant = new KeyValuePair<string, int>(ChangeLetter(variant.Key, item.Key, item.Value, 1, variant.Key.NthIndexOf(item.Key, i - howMany)), variant.Value + 1);
                                 ++howMany;
                             }
                         }
                         tmp.Add(variant);
-                        // Console.WriteLine(variant);
                     }
                 }
                 result.AddRange(tmp);
-                result = result.GroupBy(x => x.Key).Select(g => g.First().Value>g.Last().Value?g.Last():g.First()).ToList();
+                result = result.GroupBy(x => x.Key).Select(g => g.First().Value > g.Last().Value ? g.Last() : g.First()).ToList();
             }
 
             return result;

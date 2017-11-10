@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ProtoBuf;
 using System.IO;
-using testConsoleApp.Interfaces;
 
-namespace testConsoleApp
+namespace testConsoleApp.Serializers
 {
     public class ProtocolBuffersSerializer : ISerializer
     {

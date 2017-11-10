@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace testConsoleApp
+namespace testConsoleApp.Tools
 {
     public static class Levenshtein
     {
@@ -20,6 +20,14 @@ namespace testConsoleApp
             //DisplayWords(sortedWords);
 
             return sortedWords;
+        }
+
+        public static Task<List<KeyValuePair<string, int>>> FindSimilarWordsAsync(String analyzedWord, List<string> dictionary, int levensteinDistance)
+        {
+            return Task.Run(() =>
+            {
+                return FindSimilarWords(analyzedWord,dictionary,levensteinDistance);
+            });
         }
 
 

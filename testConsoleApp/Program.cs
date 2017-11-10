@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using testConsoleApp.DictionaryClasses;
-using testConsoleApp.Interfaces;
+using testConsoleApp.Serializers;
 
 namespace testConsoleApp
 {
@@ -17,25 +17,16 @@ namespace testConsoleApp
             GetDictionary(out Dictionary dictionary);
             DictionaryScanner.AddDictionary(dictionary);
 
+            Console.Write("\nPodaj słowa - jedno po drugim każde oddzielaj enterem:\n\n");
+
             do
             {
-                Console.Write("\nPodaj słowo: ");
                 string word = Console.ReadLine();
-                var result = Start(word, 8, 3, out List<string> list);
-                if (result)
-                {
-                    Console.WriteLine("- good");
-                }
-                else
-                {
-                    foreach (var item in list)
-                        Console.WriteLine(item);
-                    Console.Write("\n");
-                }
+                StartAsync(word, 50, 3);
             } while (true);
         }
 
-        #region Methods
+        #region Public
         public static void GetDictionary(out Dictionary dictionary)
         {
             ISerializer serializer = new ProtocolBuffersSerializer();
@@ -60,24 +51,45 @@ namespace testConsoleApp
             Console.WriteLine("Wczytano słownik - czas: {0} ms", 1000.0 * watch.ElapsedTicks / Stopwatch.Frequency);
         }
 
-        public static Boolean Start(string word, int count, int distance, out List<string> result)
+        public static void StartAsync(string word, int count, int distance)
         {
-            result = new List<string>();
+            Task.Run(() =>
+            {
+                Start(word, count, distance);
+            });
+        }
+        #endregion
+
+        #region Private
+        private static void Start(string word, int count, int distance)
+        {
+            var result = new List<string>();
+            Boolean isGood=false;
             string copy = word;
 
             if (!DictionaryScanner.IsLowerWordInDictionary(ref word) && word.Length > 1)
             {
-                result = DictionaryScanner.FindSimilarWords(word, 8, 3);
+                result = DictionaryScanner.FindSimilarWords(word, count);
             }
             else
             {
                 if (copy != word)
                     result.Add(word);
                 else
-                    return true;
+                    isGood = true;
             }
 
-            return false;
+            if (isGood)
+            {
+                Console.WriteLine("- good");
+            }
+            else
+            {
+                Console.Write("-false\nPODPOWIEDZI:\n");
+                foreach (var item in result)
+                    Console.WriteLine(item);
+                Console.Write("\n");
+            }
         }
         #endregion
     }
