@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -66,6 +67,41 @@ namespace Interface.Extensions
             var tr = new TextRange(point.GetPositionAtOffset(x - s1.Length), point.GetPositionAtOffset(x + s2.Length));
 
             return tr;
+        }
+
+        public static void SetContextMenu(this RichTextBox rtb, List<string> words)
+        {
+            rtb.RemoveContextMenu();
+            foreach (var word in words)
+                rtb.ContextMenu.Items.Add(CreateMenuItem(word, rtb));
+        }
+
+        public static void RemoveContextMenu(this RichTextBox rtb)
+        {
+            var items = rtb.ContextMenu.Items;
+            if (items.Count > 3)
+            {
+                for (int i = items.Count - 1; i > 2; --i)
+                    items.RemoveAt(i);
+            }
+        }
+
+        private static MenuItem CreateMenuItem(string word, RichTextBox rtb)
+        {
+            MenuItem m = new MenuItem();
+            m.Header = word;
+            m.Tag = rtb;
+            m.Click += new RoutedEventHandler(ChangeWord);
+            return m;
+        }
+
+        private static void ChangeWord(object sender, RoutedEventArgs e)
+        {
+            var m = (MenuItem)e.OriginalSource;
+            var rtb = (RichTextBox)m.Tag;
+            var word = rtb.GetSelectedWord();
+            word.Text = m.Header.ToString();
+            word.ColorFont(Brushes.Black);
         }
 
         public static void ColorFont(this TextRange tr, SolidColorBrush color)

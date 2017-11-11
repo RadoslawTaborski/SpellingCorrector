@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <RichTextBox Name="rtb" FontSize="18" FontFamily="Times New Roman" Grid.ColumnSpan="2" KeyUp="rtb_KeyUp">
+        <RichTextBox Name="rtb" FontSize="18" FontFamily="Times New Roman" Grid.ColumnSpan="2" KeyUp="rtb_KeyUp" MouseRightButtonUp="rtb_MouseRightButtonUp">
             <RichTextBox.Resources>
                 <Style TargetType="{x:Type Paragraph}">
                     <Setter Property="Margin" Value="0"/>
@@ -18,7 +18,6 @@
                     <MenuItem Command="ApplicationCommands.Cut"/>
                     <MenuItem Command="ApplicationCommands.Copy"/>
                     <MenuItem Command="ApplicationCommands.Paste"/>
-                    <MenuItem Header="Custom Item"/>
                 </ContextMenu>
             </RichTextBox.ContextMenu>
         </RichTextBox>

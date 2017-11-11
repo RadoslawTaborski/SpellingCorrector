@@ -33,14 +33,16 @@ namespace Interface
             DictionaryScanner.AddDictionary(dictionary);
         }
 
+
+
         private void rtb_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Space)
+            if (e.Key == Key.Space)
             {
                 rtb.GetDocument().ColorFont(Brushes.Black);
                 var words = rtb.GetWords();
 
-                foreach(var word in words)
+                foreach (var word in words)
                 {
                     var w = word;
                     if (!DictionaryScanner.IsLowerWordInDictionary(ref w))
@@ -72,6 +74,17 @@ namespace Interface
                 watch.Stop();
             }
             Console.WriteLine("Wczytano słownik - czas: {0} ms", 1000.0 * watch.ElapsedTicks / Stopwatch.Frequency);
+        }
+
+        private async void rtb_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var word = rtb.GetSelectedWord();
+            var results = new List<string>();
+
+            if (word.GetPropertyValue(TextElement.ForegroundProperty) == Brushes.Red)
+                results = await Task.Run(() => DictionaryScanner.FindSimilarWords(word.Text, 5));
+            
+            rtb.SetContextMenu(results);
         }
     }
 }
