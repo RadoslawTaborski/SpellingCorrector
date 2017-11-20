@@ -36,6 +36,13 @@ namespace SimilarWordsFinder.Tools
             new KeyValuePair<string, string>("ą", "ę"),
             new KeyValuePair<string, string>("ę", "ą"),
             new KeyValuePair<string, string>("ą", "om"),
+            new KeyValuePair<string, string>("en", "ę"),
+            new KeyValuePair<string, string>("ę", "en"),
+            new KeyValuePair<string, string>("en", "ę"),
+            new KeyValuePair<string, string>("en", "ę"),
+
+            new KeyValuePair<string, string>("trz", "cz"),
+            new KeyValuePair<string, string>("cz", "trz"),
 
             new KeyValuePair<string, string>("dź", "ć"),
             new KeyValuePair<string, string>("ć", "dź"),

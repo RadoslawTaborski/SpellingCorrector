@@ -28,7 +28,7 @@ namespace WindowApp
         {
             tbList.Text = "";
             var word = tbText.Text;
-            StartAsync(word, 8, 3, 5);
+            StartAsync(word, 50, 3, 5);
         }
 
         private void StartAsync(string word, int count, int distance, int howManyChanges)
