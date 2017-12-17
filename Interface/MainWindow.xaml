@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <RichTextBox Name="rtb" FontSize="18" FontFamily="Times New Roman" Grid.ColumnSpan="2" KeyUp="rtb_KeyUp" MouseRightButtonUp="rtb_MouseRightButtonUp">
+        <RichTextBox Name="rtb" FontSize="18" FontFamily="Times New Roman" KeyUp="rtb_KeyUp" MouseRightButtonUp="rtb_MouseRightButtonUp" Margin="0,10,0,0">
             <RichTextBox.Resources>
                 <Style TargetType="{x:Type Paragraph}">
                     <Setter Property="Margin" Value="0"/>

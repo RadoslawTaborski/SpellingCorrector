@@ -26,11 +26,12 @@ namespace Interface
     /// </summary>
     public partial class MainWindow : Window
     {
+        SpellCheckManager scManager;
+
         public MainWindow()
         {
             InitializeComponent();
-            GetDictionary(out Dictionary dictionary);
-            DictionaryScanner.AddDictionary(dictionary);
+            scManager = new SpellCheckManager();
         }
 
 
@@ -45,35 +46,11 @@ namespace Interface
                 foreach (var word in words)
                 {
                     var w = word;
-                    if (!DictionaryScanner.IsLowerWordInDictionary(ref w))
+                    if (!scManager.CheckWord(w))
                         foreach (var x in rtb.FindWord(w))
                             x.ColorFont(Brushes.Red);
                 }
             }
-        }
-
-        private static void GetDictionary(out Dictionary dictionary)
-        {
-            ISerializer serializer = new ProtocolBuffersSerializer();
-            var watch = new Stopwatch();
-
-            if (!File.Exists(@"Dictionary\serialized"))
-            {
-                watch.Start();
-                dictionary = new Dictionary(@"Dictionary\words.txt");
-                watch.Stop();
-
-                var data = serializer.Serialize<Dictionary>(dictionary);
-                File.WriteAllBytes(@"Dictionary\serialized", data);
-            }
-            else
-            {
-                watch.Start();
-                var data = File.ReadAllBytes(@"Dictionary\serialized");
-                dictionary = serializer.Deserialize<Dictionary>(data);
-                watch.Stop();
-            }
-            Console.WriteLine("Wczytano słownik - czas: {0} ms", 1000.0 * watch.ElapsedTicks / Stopwatch.Frequency);
         }
 
         private async void rtb_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
@@ -82,8 +59,8 @@ namespace Interface
             var results = new List<string>();
 
             if (word.GetPropertyValue(TextElement.ForegroundProperty) == Brushes.Red)
-                results = await Task.Run(() => DictionaryScanner.FindSimilarWords(word.Text, 5));
-            
+                results = await Task.Run(() => scManager.SpellingPropositions(word.Text));
+
             rtb.SetContextMenu(results);
         }
     }
