@@ -30,6 +30,11 @@ namespace SimilarWordsFinder
             return false;
         }
 
+        /// <summary>
+        /// Converts the word to lowercase and checks if the word is in the dictionary
+        /// </summary>
+        /// <param name="word">Word which is converted to lowercase</param>
+        /// <returns>Is the lowercase word is in dictionary</returns>
         public static Boolean IsLowerWordInDictionary(ref string word)
         {
             word = word.ToLower();
@@ -43,24 +48,27 @@ namespace SimilarWordsFinder
         public static List<string> FindSimilarWords(string word, int maxNumberOfResults, int levensteinDistance=3, int howManyChanges=5)
         {
             word = word.ToLower();
-            
             var watch2 = new Stopwatch();
             var watch3 = new Stopwatch();
             var result = new List<KeyValuePair<string, int>>();
 
-            int increaseRangeLC = 1;
+            int increaseRangeLC = 2;
             //Console.WriteLine("Find Start\n");
             watch3.Start();
             var list3 = UseSpaceAdder(word, howManyChanges-1);
             watch3.Stop();
 
             watch2.Start();
-            var list2 = UseLetterChanger(word, howManyChanges);
+            var list2 = UseLetterChanger(word, howManyChanges+1);
             watch2.Stop();
           
             var list1 = UseLevensteinAsync(word, levensteinDistance);           
 
-            list2.ForEach(x => new KeyValuePair<string,int>(x.Key,x.Value-increaseRangeLC));
+            //list2.ForEach(x => new KeyValuePair<string,int>(x.Key,x.Value-increaseRangeLC));
+            for(var i=0; i<list2.Count;++i)
+            {
+                list2[i] = new KeyValuePair<string, int>(list2[i].Key, list2[i].Value - increaseRangeLC);
+            }
 
             result.AddRange(list3);
             result.AddRange(list2);

@@ -46,9 +46,15 @@ namespace Interface
         public List<string> SpellingPropositions(string word)
         {
             var result = new List<string>();
-
+            var copy = word;
+            word = word.ToLower();
             if (misspelledWords.ContainsKey(word))
                 result = misspelledWords[word];
+
+            if (!copy.Equals(word))
+            {
+                result=FirstCharToUpper(result);
+            }
 
             return result;
         }
@@ -93,6 +99,17 @@ namespace Interface
                 watch.Stop();
             }
             Console.WriteLine("Wczytano słownik - czas: {0} ms", 1000.0 * watch.ElapsedTicks / Stopwatch.Frequency);
+        }
+
+        private List<string> FirstCharToUpper(List<string> list)
+        {
+            var result = new List<string>();
+            foreach(var item in list)
+            {
+                result.Add(item.First().ToString().ToUpper() + item.Substring(1));
+            }
+
+            return result;
         }
 
         #endregion
