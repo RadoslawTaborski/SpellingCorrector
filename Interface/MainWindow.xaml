@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interface"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="641.667">
     <Grid>
-        <RichTextBox Name="rtb" FontSize="18" FontFamily="Times New Roman" KeyUp="rtb_KeyUp" MouseRightButtonUp="rtb_MouseRightButtonUp" Margin="0,10,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="467*"/>
+            <ColumnDefinition Width="167*"/>
+        </Grid.ColumnDefinitions>
+        <RichTextBox Name="rtb" FontSize="18" VerticalScrollBarVisibility="Auto" FontFamily="Times New Roman" KeyUp="rtb_KeyUp" MouseRightButtonUp="rtb_MouseRightButtonUp" Margin="10,17,10,10">
             <RichTextBox.Resources>
                 <Style TargetType="{x:Type Paragraph}">
                     <Setter Property="Margin" Value="0"/>
@@ -21,5 +25,11 @@
                 </ContextMenu>
             </RichTextBox.ContextMenu>
         </RichTextBox>
+        <TextBox x:Name="maxNumberOfResults" Grid.Column="1" Height="23" Margin="10,36,10,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" TextChanged="maxNumberOfResults_TextChanged"/>
+        <TextBox x:Name="levenshteinDistance" Grid.Column="1" Height="23" Margin="10,97,10,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" TextChanged="levenshteinDoistance_TextChanged"/>
+        <TextBox x:Name="howManyChanges" Grid.Column="1" Height="23" Margin="10,161,10,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" TextChanged="howManyChanges_TextChanged"/>
+        <TextBlock Text="Ilość podpowiedzi" TextWrapping="WrapWithOverflow" Grid.Column="1" Margin="10,17,10,0" VerticalAlignment="Top" Height="19"/>
+        <TextBlock Text="Odległość Levenshteina" TextWrapping="WrapWithOverflow" Grid.Column="1" Margin="10,73,10,0" VerticalAlignment="Top" Height="19"/>
+        <TextBlock Text="Ilość zmian" TextWrapping="WrapWithOverflow" Grid.Column="1" Margin="10,138,10,0" VerticalAlignment="Top" Height="18"/>
     </Grid>
 </Window>

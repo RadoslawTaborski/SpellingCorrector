@@ -13,7 +13,38 @@ namespace Interface
 {
     public class SpellCheckManager
     {
+        #region Properties
+
         private Dictionary<string, List<string>> misspelledWords = new Dictionary<string, List<string>>();
+        private List<string> correctWords = new List<string>();
+
+        private int maxResults = 5;
+        private int levDistance = 3;
+        private int howManyChnages = 5;
+
+        #endregion
+
+        #region Getters and Setters
+
+        public int MaxResults
+        {
+            get { return maxResults; }
+            set { maxResults = value; UpdateMisspelledWords(); }
+        }
+
+        public int LevDistance
+        {
+            get { return levDistance; }
+            set { levDistance = value; UpdateMisspelledWords(); }
+        }
+
+        public int HowManyChanges
+        {
+            get { return howManyChnages; }
+            set { howManyChnages = value; UpdateMisspelledWords(); }
+        }
+
+        #endregion
 
         #region Public methods
 
@@ -21,6 +52,7 @@ namespace Interface
         {
             GetDictionary(out Dictionary dictionary);
             DictionaryScanner.AddDictionary(dictionary);
+
         }
 
         /// <summary>
@@ -30,11 +62,16 @@ namespace Interface
         /// <returns>true if word is correct and false if it's not</returns>
         public bool CheckWord(string word)
         {
-            if (!DictionaryScanner.IsLowerWordInDictionary(ref word))
+            if (correctWords.Contains(word)) // if word was already checked and is correct
+                return true;
+            else if (misspelledWords.ContainsKey(word)) // if word was already checked and is misspelled 
+                return false;
+            else if (!DictionaryScanner.IsLowerWordInDictionary(ref word)) // if word was never checked and it's misspelled
             {
                 AddWordToDictionary(word);
                 return false;
             }
+            correctWords.Add(word);
             return true;
         }
 
@@ -53,7 +90,7 @@ namespace Interface
 
             if (!copy.Equals(word))
             {
-                result=FirstCharToUpper(result);
+                result = FirstCharToUpper(result);
             }
 
             return result;
@@ -71,7 +108,7 @@ namespace Interface
                 if (!misspelledWords.ContainsKey(word))
                     misspelledWords.Add(
                         word,
-                        await Task.Run(() => DictionaryScanner.FindSimilarWords(word, 5))
+                        await Task.Run(() => DictionaryScanner.FindSimilarWords(word, MaxResults, LevDistance, HowManyChanges))
                         );
             }
             catch { }
@@ -104,12 +141,24 @@ namespace Interface
         private List<string> FirstCharToUpper(List<string> list)
         {
             var result = new List<string>();
-            foreach(var item in list)
+            foreach (var item in list)
             {
                 result.Add(item.First().ToString().ToUpper() + item.Substring(1));
             }
 
             return result;
+        }
+
+        private async void UpdateMisspelledWords()
+        {
+            var keys = misspelledWords.Keys.ToArray();
+
+            foreach (var key in keys)
+            {
+                misspelledWords[key] = await Task.Run(() =>
+                        DictionaryScanner.FindSimilarWords(key, MaxResults, LevDistance, HowManyChanges)
+                    );
+            }
         }
 
         #endregion

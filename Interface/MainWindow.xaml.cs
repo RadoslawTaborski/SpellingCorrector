@@ -1,23 +1,12 @@
-﻿using System;
+﻿using Interface.Extensions;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Interface.Extensions;
-using SimilarWordsFinder;
-using SimilarWordsFinder.DictionaryClasses;
-using SimilarWordsFinder.Serializers;
-using System.IO;
-using System.Diagnostics;
 
 namespace Interface
 {
@@ -32,9 +21,10 @@ namespace Interface
         {
             InitializeComponent();
             scManager = new SpellCheckManager();
+            maxNumberOfResults.Text = scManager.MaxResults.ToString();
+            levenshteinDistance.Text = scManager.LevDistance.ToString();
+            howManyChanges.Text = scManager.HowManyChanges.ToString();
         }
-
-
 
         private void rtb_KeyUp(object sender, KeyEventArgs e)
         {
@@ -53,7 +43,14 @@ namespace Interface
             }
         }
 
-        private async void rtb_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        private void rtb_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Task.Run(() => rtb.Dispatcher.Invoke(new UpdateInterface(checkSpeling)));
+        }
+
+        public delegate void UpdateInterface();
+
+        private async void checkSpeling()
         {
             var word = rtb.GetSelectedWord();
             var results = new List<string>();
@@ -62,6 +59,33 @@ namespace Interface
                 results = await Task.Run(() => scManager.SpellingPropositions(word.Text));
 
             rtb.SetContextMenu(results);
+        }
+
+        private void maxNumberOfResults_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                scManager.MaxResults = Int32.Parse(maxNumberOfResults.Text);
+            }
+            catch { }
+        }
+
+        private void levenshteinDoistance_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                scManager.LevDistance = Int32.Parse(levenshteinDistance.Text);
+            }
+            catch { }
+        }
+
+        private void howManyChanges_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                scManager.HowManyChanges = Int32.Parse(howManyChanges.Text);
+            }
+            catch { }
         }
     }
 }
