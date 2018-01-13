@@ -66,11 +66,26 @@ Głównym zadaniem aplikacji jest wyszukiwanie błędnych wyrazów w języku pol
 	\label{fig:interfejs5}
 \end{figure}
 
+Odpowiednio zmieniając parametry znajdujące się w prawej części okna aplikacji można dostosować wyszukiwanie do potrzeb użytkownika. Rysunek \ref{fig:interfejs1} przedstawia przykładowe wyniki wyszukiwania podpowiedzi. Jeśli ilość wyświetlanych wyników nie jest odpowiednia można zmienić ich ilość tak aby uzyskać satysfakcjonujący wynik. Rysunek \ref{fig:interfejs2} przedstawia wpływ zwiększenia ilości wyświetlanych podpowiedzi. Jednocześnie ilość podpowiedzi nie ma wpływu na szybkość działania aplikacji. 
+
+Pozostałe parametry wpływają na podobieństwo sugestii do wprowadzonego błędnie słowa. Na rysunku \ref{fig:interfejs3} został przedstawiony przykładowy wynik wyszukiwania który przy danych parametrach nie wypełnia całej listy podpowiedzi. Na rysunku \ref{fig:interfejs4} zwiększono odległość Levenhstaina tak aby uzyskać więcej sugestii. Natomiast na rysunku \ref{fig:interfejs5} całkowicie zminimalizowano wpływ algorytmu podmieniającego znaki tak aby pozbyć się niechcianych podpowiedzi zawierających spacje.
+ 
 \section{Realizacja wybranych funkcjonalności}
 
 \begin{figure} [H]
 	\centering
 	\includegraphics[width=1\linewidth]{rozdzial03/CorectorManager.png}
-	\caption{Korekcja tekstu z poziomu interfejsu}
+	\caption{Schemat korekcji tekstu z poziomu interfejsu}
 	\label{fig:CorectorManager}
 \end{figure}
+
+\newpage
+
+Główną funkcjonalnością aplikacji jest wyszukiwanie a następnie korekcja błędów. Rysunek~\ref{fig:CorectorManager} przedstawia schemat działania algorytmu odpowiedzialnego za powyższe zadanie. 
+
+Początkowo algorytm sprawdza czy dane słowo było już wcześniej wyszukiwane. Jeśli tak to sprawdza czy jest ono na liście poprawnych słów. Jeśli tak to słowo jest poprawne i algorytm kończy pracę. Jeśli nie to sprawdza on listę błędnie wprowadzonych słów i zwraca on podpowiedzi. Jeśli podpowiedzi zostały już raz wyszukane dla danego słowa to zostają one zapisane. Ma to na celu przyspieszenie działania algorytmu ponieważ najwięcej czasu pochłania wyszukiwanie sugestii. 
+
+Jeśli słowo jest wyszukiwane po raz pierwszy następuje sprawdzenie jego poprawności porównując je ze słowami znajdującymi się w słowniku. Jeśli jest poprawne to zostaje ono dodane do listy poprawnych sprawdzanych wcześniej słów i algorytm kończy pracę. Natomiast jeśli słowo jest błędne następuje wyszukiwanie sugestii. Po ich wyszukaniu zostają on zapisane wraz z niepoprawnym wyrazem na liście błędnych słów. Algorytm zwraca listę sugestii i kończy pracę.
+
+Algorytm ten działa dla każdego słowa w osobnym wątku. Ma to za zadnie przyspieszenie działania aplikacji.  
+
