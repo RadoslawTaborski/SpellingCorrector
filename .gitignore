@@ -306,6 +306,7 @@ OpenCover/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
+*.pdf
 *.lof
 *.log
 *.lot
