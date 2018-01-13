@@ -1,0 +1,59 @@
+        private readonly static List<KeyValuePair<string, string>> _letterPairs = new List<KeyValuePair<string, string>>()
+        {
+            new KeyValuePair<string, string>("rz", "ż"),
+            new KeyValuePair<string, string>("ż", "rz"),
+
+            new KeyValuePair<string, string>("u", "ó"),
+            new KeyValuePair<string, string>("ó", "u"),
+
+            new KeyValuePair<string, string>("ch", "h"),
+            new KeyValuePair<string, string>("h", "ch"),
+
+            new KeyValuePair<string, string>("i", "j"),
+            new KeyValuePair<string, string>("j", "i"),
+
+            new KeyValuePair<string, string>("ę", "em"),
+
+            new KeyValuePair<string, string>("ji", "i"),
+            new KeyValuePair<string, string>("ji", "ii"),
+
+            new KeyValuePair<string, string>("rs", "rws"),
+
+            new KeyValuePair<string, string>("ą", "on"),
+            new KeyValuePair<string, string>("on", "ą"),
+            new KeyValuePair<string, string>("ą", "ę"),
+            new KeyValuePair<string, string>("ę", "ą"),
+            new KeyValuePair<string, string>("ą", "om"),
+            new KeyValuePair<string, string>("en", "ę"),
+            new KeyValuePair<string, string>("ę", "en"),
+            new KeyValuePair<string, string>("en", "ę"),
+            new KeyValuePair<string, string>("en", "ę"),
+
+            new KeyValuePair<string, string>("trz", "cz"),
+            new KeyValuePair<string, string>("cz", "trz"),
+
+            new KeyValuePair<string, string>("dź", "ć"),
+            new KeyValuePair<string, string>("ć", "dź"),
+
+            new KeyValuePair<string, string>("s", "ś"),
+            new KeyValuePair<string, string>("ś", "s"),
+            new KeyValuePair<string, string>("ł", "l"),
+            new KeyValuePair<string, string>("l", "ł"),
+            new KeyValuePair<string, string>("a", "ą"),
+            new KeyValuePair<string, string>("ą", "a"),
+            new KeyValuePair<string, string>("e", "ę"),
+            new KeyValuePair<string, string>("ę", "e"),
+            new KeyValuePair<string, string>("z", "ź"),
+            new KeyValuePair<string, string>("ź", "z"),
+            new KeyValuePair<string, string>("z", "ż"),
+            new KeyValuePair<string, string>("ż", "z"),
+            new KeyValuePair<string, string>("o", "ó"),
+            new KeyValuePair<string, string>("ó", "o"),
+            new KeyValuePair<string, string>("ć", "c"),
+            new KeyValuePair<string, string>("c", "ć"),
+            new KeyValuePair<string, string>("n", "ń"),
+            new KeyValuePair<string, string>("ń", "n"),
+
+            new KeyValuePair<string, string>("sz", "ż"),
+            new KeyValuePair<string, string>("ż", "sz"),
+        };

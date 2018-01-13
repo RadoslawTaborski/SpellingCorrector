@@ -1,23 +1,25 @@
 \documentclass[eng,printmode,oneside,openany]{mgr2} %openany openright
+%pakiety dodające dużo dodatkowych poleceń matematycznych
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage[polish]{babel}%alternatywnie do pakietu polski, wybrać jeden z nich
 \usepackage{polski} %przydatne podczas składania dokumentów w j. polskim
-%\usepackage[polish]{babel}%alternatywnie do pakietu polski, wybrać jeden z nich
+
 %\usepackage[utf8x]{inputenc} %kodowanie znaków, zależne od systemu
 %\usepackage{polski} %przydatne podczas składania dokumentów w j. polskim
 %\usepackage[cp1250]{inputenc} %kodowanie znaków, zależne od systemu
 %\usepackage[T1]{fontenc} %poprawne składanie polskich czcionek
 %pakiety do grafiki
 \usepackage[utf8]{inputenc} %kodowanie znaków, zależne od systemu
-\usepackage[T1]{fontenc} %poprawne składanie polskich czcionek
 \usepackage{lmodern}
-%\usepackage[utf8x]{inputenc}
-%\usepackage{ucs}
+\usepackage[T1]{fontenc} %poprawne składanie polskich czcionek
+\usepackage{ucs}
 %\usepackage[MeX]{polski}
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{psfrag}
-%pakiety dodające dużo dodatkowych poleceń matematycznych
-\usepackage{amsmath}
-\usepackage{amsfonts}
+
 %pakiety wspomagające i poprawiające składanie tabel
 \usepackage{supertabular}
 \usepackage{array}
@@ -63,7 +65,7 @@
 
 %pakiet wypisujący na marginesie etykiety równań i rysunków zdefiniowanych przez \label{}, chcąc wygenerować finalną wersję dokumentu wystarczy usunąć poniższą linię
 %\usepackage{showlabels} 
-
+	
 %definicje własnych poleceń
 \newcommand{\R}{I\!\!R} %symbol liczb rzeczywistych, działa tylko w trybie matematycznym
 \newtheorem{theorem}{Twierdzenie}[section] %nowe otoczenie do składania twierdzeń
@@ -82,6 +84,27 @@
 		showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
 		showstringspaces=false,          % underline spaces within strings only
 		showtabs=false,                  % show tabs within strings adding particular underscores
+		language=SQL,
+		inputencoding=utf8x, 
+		extendedchars=true,
+		literate={ą}{{\k{a}}}1
+		{Ą}{{\k{A}}}1
+		{ę}{{\k{e}}}1
+		{Ę}{{\k{E}}}1
+		{ó}{{\'o}}1
+		{Ó}{{\'O}}1
+		{ś}{{\'s}}1
+		{Ś}{{\'S}}1
+		{ł}{{\l{}}}1
+		{Ł}{{\L{}}}1
+		{ż}{{\.z}}1
+		{Ż}{{\.Z}}1
+		{ź}{{\'z}}1
+		{Ź}{{\'Z}}1
+		{ć}{{\'c}}1
+		{Ć}{{\'C}}1
+		{ń}{{\'n}}1
+		{Ń}{{\'N}}1
 }}
 
 %dane do złożenia strony tytułowej
