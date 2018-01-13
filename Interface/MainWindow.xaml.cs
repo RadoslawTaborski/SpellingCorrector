@@ -58,6 +58,9 @@ namespace Interface
             if (word.GetPropertyValue(TextElement.ForegroundProperty) == Brushes.Red)
                 results = await Task.Run(() => scManager.SpellingPropositions(word.Text));
 
+            if (results.Count == 0)
+                results = await Task.Run(() => scManager.RawSpellingPropositions(word.Text));
+
             rtb.SetContextMenu(results);
         }
 
