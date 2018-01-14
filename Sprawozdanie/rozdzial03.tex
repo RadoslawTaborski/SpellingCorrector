@@ -98,8 +98,7 @@ Serializacja jest mechanizmem zamiany obiektu zapisywania obiektów, który pozw
 
 W projekcie serializacja użyta została do zapisania klasy odpowiedzialnej za przechowywanie słownika. Przy pierwszym uruchomieniu programu słownik jest wczytywany z pliku tekstowego, a jego hasła są w odpowiedni sposób organizowane (więcej o tym w kolejnym podrozdziale). Dlatego uruchamianie programu i organizowanie słownika za każdym razem od nowa byłoby dość mało optymalne. Klasa z wczytanym słownikiem została zserializowana i zapisana do pliku. Od tego momentu przy każdym ponownym uruchomieniu programu, sprawdzane jest czy ten plik istnieje we wskazanym miejscu i o ile nikt go nie usunął to zostaje wczytany. Operacja trwa o wiele krócej, niż odczyt pliku i organizacja słownika na nowo. \\
 
-%TODO: odsyłacz
-Przy wyborze metody serializacji posłużono się artykułem ze strony [], z którego to wynika, że jedną z najszybszych metod serializacji i deserializacji odbywa się z wykorzystaniem biblioteki \textit{ProtoBuf}, stworzonej przez firmę \textit{Google}. Metoda ta opera się o zapisywanie stanu klasy do pliku o strukturze XML, a każde pole i właściwość klasy musi zostać wyposażone w specjalny atrybut \textit{[ProtoMember(1)]} , przy czym cyfra podana w nawiasie musi być dla każdego pola unikalna.
+Przy wyborze metody serializacji posłużono się artykułem ze strony [\ref{bib:serializ}], z którego to wynika, że jedną z najszybszych metod serializacji i deserializacji odbywa się z wykorzystaniem biblioteki \textit{ProtoBuf}, stworzonej przez firmę \textit{Google}. Metoda ta opera się o zapisywanie stanu klasy do pliku o strukturze XML, a każde pole i właściwość klasy musi zostać wyposażone w specjalny atrybut \textit{[ProtoMember(1)]} , przy czym cyfra podana w nawiasie musi być dla każdego pola unikalna ([\ref{bib:protbuf}]).
 
 \subsection{Organizacja słownika}
 
@@ -116,4 +115,6 @@ Pierwszy sposób przechowywania haseł został przystosowany specjalnie dla prze
 Drugi sposób przechowywania haseł został wykorzystany dla pozostałych dwóch algorytmów oraz dla sprawdzania czy dany wyraz znajduje się w słowniku. Przeszukiwanie słownika odbywa się w sposób dużo szybszy, gdyż znana jest długość słowa badanego oraz jego pierwsza litera, a oba te parametry odpowiadają indeksom dwuwymiarowego zbioru w którym przechowywane są hasła.
 
 \subsection{Praca na wielu wątkach}
+
+%TODO: PIRU
 
