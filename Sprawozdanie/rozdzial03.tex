@@ -9,8 +9,9 @@
 	\label{fig:diagUzycia}
 \end{figure}
 
-Głównym zadaniem aplikacji jest wyszukiwanie błędnych wyrazów w języku polskim oraz ich korekta. Aby tego dokonać aplikacja porównuje wyrazy znajdujące się w tekście z wyrazami znajdującymi się w słowniku. Jeśli danego słowa nie znaleziono, zostaje ono uznane za błędne. Aby dokonać korekcji błędnych wyrazów stosowane są algorytmy opisane w poprzednim rozdziale. Dla optymalizacji działania aplikacji wyszukiwanie sugestii odbywa się w osobnych wątkach co znacząco przyspiesza działanie aplikacji. 
+Głównym zadaniem aplikacji jest wyszukiwanie błędnych wyrazów w języku polskim oraz ich korekta. Aby tego dokonać aplikacja porównuje wyrazy znajdujące się w tekście z wyrazami znajdującymi się w słowniku. Jeśli danego słowa nie znaleziono, zostaje ono uznane za błędne. Aby dokonać korekcji błędnych wyrazów stosowane są algorytmy opisane w poprzednim rozdziale. Dla optymalizacji działania aplikacji wyszukiwanie sugestii odbywa się w osobnych wątkach co znacząco przyspiesza działanie aplikacji.
 
+By ciąg znaków był sprawdzany musi on składać się z co najmniej dwóch znaków. A znaki interpunkcyjne między dwoma innymi znakami traktowane są jak spacja.
 
 \section{Interfejs aplikacji}
 
@@ -68,7 +69,7 @@ Głównym zadaniem aplikacji jest wyszukiwanie błędnych wyrazów w języku pol
 
 Odpowiednio zmieniając parametry znajdujące się w prawej części okna aplikacji można dostosować wyszukiwanie do potrzeb użytkownika. Rysunek~\ref{fig:interfejs1} przedstawia przykładowe wyniki wyszukiwania podpowiedzi. Jeśli ilość wyświetlanych wyników nie jest odpowiednia można zmienić ich ilość, tak aby uzyskać satysfakcjonujący wynik. Rysunek~\ref{fig:interfejs2} przedstawia wpływ zwiększenia ilości wyświetlanych podpowiedzi. Jednocześnie ilość podpowiedzi nie ma wpływu na szybkość działania aplikacji. 
 
-Pozostałe parametry wpływają na podobieństwo sugestii do wprowadzonego błędnie słowa. Na rysunku~\ref{fig:interfejs3} został przedstawiony przykładowy wynik wyszukiwania, który przy danych parametrach nie wypełnia całej listy podpowiedzi. Na rysunku \ref{fig:interfejs4} zwiększono odległość Levenshteina, tak aby uzyskać więcej sugestii. Natomiast na rysunku~\ref{fig:interfejs5} całkowicie zminimalizowano wpływ algorytmu podmieniającego znaki, tak aby pozbyć się niechcianych podpowiedzi zawierających spacje.
+Pozostałe parametry wpływają na podobieństwo sugestii do wprowadzonego błędnie słowa. Na rysunku~\ref{fig:interfejs3} został przedstawiony przykładowy wynik wyszukiwania, który przy danych parametrach nie wypełnia całej listy podpowiedzi. Na rysunku \ref{fig:interfejs4} zwiększono odległość Levenshteina, tak aby uzyskać więcej sugestii. Natomiast na rysunku~\ref{fig:interfejs5} całkowicie zminimalizowano wpływ algorytmu podmieniającego znaki i wstawiającego spacje, spowodowało to, że wyświetlone rezultaty w całości pochodzą z algorytmu wykorzystującego odległość Levenshteina.
  
 \section{Realizacja wybranych funkcjonalności}
 
