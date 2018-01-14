@@ -1,4 +1,17 @@
 \chapter{Podsumowanie}
 
-\lssetdef
-\lstinputlisting[captionpos=b,caption={Przykład listingu},label={lst:example},basicstyle={\footnotesize\ttfamily}]{rozdzial04/example.txt}
+%\lssetdef
+%\lstinputlisting[captionpos=b,caption={Przykład listingu},label={lst:example},basicstyle={\footnotesize\ttfamily}]{rozdzial04/example.txt}
+
+Aplikacja stworzona na potrzeby projektu spełnia wszystkie cele oraz założenia projektowe. Pozwala ona na sprawdzenie dowolnego tekstu w języku polskim wpisanego przez użytkownika. Użytkownik ma możliwość wstawienia w każde z błędnych słów innego zasugerowanego przez system. Dzięki zoptymalizowaniu algorytmów wyszukiwania jak i interfejsu użytkownika wyszukiwanie sugestii odbywa się w czasie rzeczywistym. Dzięki zastosowaniu słownika w postaci pliku tekstowego jego modyfikacja w formie dodawania kolejnych wyrazów jest bardzo prosta. 
+
+W celu wyszukiwania jak najtrafniejszych zamienników dla błędnie napisanych słów zaimplementowano trzy algorytmy:
+\begin{itemize}
+	\item Levenhstain -
+	\item Zamiana znaków -
+	\item Podział na wyrazy -  
+\end{itemize}
+
+Dzięki takiemu rozwiązaniu program dobrze radzi sobie niezależnie od rodzaju błędu jaki popełnił użytkownik.
+
+Aplikacja została napisana w języku C\# dlatego jest przeznaczona na komputery z systemem Windows. Korzystanie z niej nie wymaga instalacji. Dodatkowo jest to niezależna aplikacja która do działania nie wymaga dodatkowych bibliotek.
