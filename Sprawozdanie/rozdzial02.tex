@@ -9,12 +9,20 @@ Pierwszym z użytych algorytmów jest algorytm na obliczanie długości Levensht
 	\item zamianę znaku w napisie na inny znak;
 \end{itemize}
 
+Idea algorytmu polega na stworzeniu dwuwymiarowej tablicy, o wymiarach n+1 na m+1, gdzie n i m to długości porównywanych słów. Pierwszy wiersz i kolumna uzupełniane są wartościami odpowiedni od 0 do n i m. W następnym etapie po kolei bierze się wartości wiersza i porównuje literę dotyczącą tego wiersza z literą dotyczącą kolumny. Dokonuje się porównania na zasadzie każdy z każdym. Jeżeli litery są identyczne to ustawia się koszt na 0, jeśli nie to na 1. Następnie daną komórkę wypełnia się wartością, którą jest minimum z poniższych trzech pozycji:
+\begin{itemize}
+	\item wartości komórki leżącej bezpośrednio nad aktualnie badaną komórką zwiększoną o 1;
+	\item wartości komórki leżącej bezpośrednio w lewo od naszej aktualnej komórki + 1;
+	\item wartości komórki leżącej bezpośrednio w lewą-górną stronę od aktualnej komórki + koszt;
+\end{itemize}
+Po wykonaniu wszystkich porównań, odległością edycyjną będzie wartość w komórce~[n+1,~m+1]. \\
+
 Algorytm ten posłużył w projekcie do przeszukiwania wybranych fragmentów słownika i wybierania tych słów, których odległość Levenshteina nie przekracza odległości podanej przez użytkownika w jednym z parametrów dostępnych w interfejsie aplikacji.
 
 \begin{figure} [H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{rozdzial02/Levenstein1.png}
-	\caption{Diagram dla działania algorytmu z wykorzystaniem odległości Levensteina}
+	\caption{Diagram dla działania algorytmu z wykorzystaniem odległości Levenshteina}
 	\label{fig:Lev}
 \end{figure}
 
