@@ -1,0 +1,156 @@
+\documentclass[eng,printmode,oneside,openany]{mgr2} %openany openright
+%pakiety dodające dużo dodatkowych poleceń matematycznych
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage[polish]{babel}%alternatywnie do pakietu polski, wybrać jeden z nich
+\usepackage{polski} %przydatne podczas składania dokumentów w j. polskim
+
+%\usepackage[utf8x]{inputenc} %kodowanie znaków, zależne od systemu
+%\usepackage{polski} %przydatne podczas składania dokumentów w j. polskim
+%\usepackage[cp1250]{inputenc} %kodowanie znaków, zależne od systemu
+%\usepackage[T1]{fontenc} %poprawne składanie polskich czcionek
+%pakiety do grafiki
+\usepackage[utf8]{inputenc} %kodowanie znaków, zależne od systemu
+\usepackage{lmodern}
+\usepackage[T1]{fontenc} %poprawne składanie polskich czcionek
+\usepackage{ucs}
+%\usepackage[MeX]{polski}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{psfrag}
+
+%pakiety wspomagające i poprawiające składanie tabel
+\usepackage{supertabular}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{hhline}
+\usepackage{listings}
+
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{color}
+\usepackage{enumerate}
+
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{color,calc}
+\usepackage{listings}
+
+
+\usepackage{wrapfig}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage{epstopdf}
+%\usepackage{soul} % pakiet z komendami do podkreślania tekstu
+
+\usepackage{ebgaramond} % pakiet z czcionkami garamond, potrzebny tylko do strony tytułowej, musi wystąpić przed pakietem tgtermes
+%\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\topmargin -10mm
+
+%% Aby uzyskać polskie literki w pdfie (a nie zlepki) korzystamy z pakietu czcionek tgterms. 
+%% W pakiecie tym są zdefiniowane klony czcionek Times o kształtach: normalny, pogrubiony, italic, italic pogrubiony.
+%% W pakiecie tym brakuje czcionki o kształcie: slanted (podobny do italic). 
+%% Jeśli w dokumencie gdzieś zostanie zastosowana czcionka slanted (np. po użyciu komendy \textsl{}), to
+%% latex dokona podstawienia na czcionkę standardową i zgłosi to w ostrzeżeniu (warningu).
+%% Ponadto tgtermes to czcionka do tekstu. Wszelkie matematyczne wzory będą sformatowane domyślną czcionką do wzorów.
+%% Jeśli wzory mają być sformatowane z wykorzystaniem innych czcionek, trzeba to jawnie zadeklarować.
+
+%% Po zainstalowaniu pakietu tgtermes może będzie trzeba zauktualizować informacje 
+%% o dostępnych fontach oraz mapy. Można to zrobić z konsoli (jako administrator)
+%% initexmf --admin --update-fndb
+%% initexmf --admin --mkmaps
+
+\usepackage{tgtermes} 
+
+%pakiet wypisujący na marginesie etykiety równań i rysunków zdefiniowanych przez \label{}, chcąc wygenerować finalną wersję dokumentu wystarczy usunąć poniższą linię
+%\usepackage{showlabels} 
+	
+%definicje własnych poleceń
+\newcommand{\R}{I\!\!R} %symbol liczb rzeczywistych, działa tylko w trybie matematycznym
+\newtheorem{theorem}{Twierdzenie}[section] %nowe otoczenie do składania twierdzeń
+\newcommand{\lssetdef}{\lstset{
+		backgroundcolor=\color[rgb]{0.9,0.9,0.9},
+		basicstyle={\small\ttfamily},
+		breaklines=true,
+		frame=l,
+		tabsize=2,
+		basicstyle=\small,
+		xleftmargin={0.75cm},
+		numbers=left,
+		stepnumber=1,
+		firstnumber=1,
+		numberfirstline=true,
+		showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+		showstringspaces=false,          % underline spaces within strings only
+		showtabs=false,                  % show tabs within strings adding particular underscores
+		language=SQL,
+		inputencoding=utf8x, 
+		extendedchars=true,
+		literate={ą}{{\k{a}}}1
+		{Ą}{{\k{A}}}1
+		{ę}{{\k{e}}}1
+		{Ę}{{\k{E}}}1
+		{ó}{{\'o}}1
+		{Ó}{{\'O}}1
+		{ś}{{\'s}}1
+		{Ś}{{\'S}}1
+		{ł}{{\l{}}}1
+		{Ł}{{\L{}}}1
+		{ż}{{\.z}}1
+		{Ż}{{\.Z}}1
+		{ź}{{\'z}}1
+		{Ź}{{\'Z}}1
+		{ć}{{\'c}}1
+		{Ć}{{\'C}}1
+		{ń}{{\'n}}1
+		{Ń}{{\'N}}1
+}}
+
+%dane do złożenia strony tytułowej
+\project{Projektowanie systemów z dostępem w języku naturalnym}
+\title{Opracowanie algorytmu określającego możliwe zamienniki dla błędnych słów w tekstach
+	w języku polskim}
+\engtitle{}
+\author{Radosław Taborski - 209347\\Piotr Konieczny - 209174}
+\supervisor{dr inż. Dariusz Banasiak}
+%\guardian{dr hab. inż. Imię Nazwisko Prof. PWr, I-6} %nie używać jeśli opiekun jest tą samą osobą co prowadzący pracę
+
+%\date{2017} %standardowo u dołu strony tytułowej umieszczany jest bieżący rok, to polecenie pozwala wstawić dowolny rok
+
+%poniżej jest lista kierunków i specjalności na wydziale elektroniki, należy wybrać właściwe lub dopisać jeśli nie ma odpowiednich
+\field{Informatyka (INF)}
+\specialisation{Inżynieria systemów informatycznych (INS)}
+
+%tutaj zaczyna się właściwa treść dokumentu
+\begin{document}
+	%\bibliographystyle{unsrt} %tylko gdy używamy BibTeXa, ustawia polski styl bibliografii
+	
+	\maketitle %polecenie generujące stronę tytułową
+	
+	%TODO: ten fragment do wersji archiwalnej
+	%\newpage 
+	%\thispagestyle{empty}
+	%\ 
+	%\newpage	
+
+	\setcounter{page}{2}
+	\tableofcontents %spis treści
+	
+	
+	\linespread{1.2}
+	%opcjonalnie może się tu pojawić spis rysunków i tabel
+	\listoffigures
+	\addcontentsline{toc}{chapter}{Spis rysunków} %utworzenie w spisie treści pozycji Spis rysunków
+	
+	\include{rozdzial01}
+	\include{rozdzial02}
+	\include{rozdzial03}
+	\include{rozdzial04}
+	\addcontentsline{toc}{chapter}{Literatura} %utworzenie w spisie treści pozycji Bibliografia
+	\include{Bibliografia2}
+	
+	%\include{Bibliografia2}
+	%\bibliography{bibliografia} % wstawia bibliografię korzystając z pliku bibliografia.bib - dotyczy BibTeXa, jeżeli nie korzystamy z BibTeXa należy użyć otoczenia thebibliography
+	
+\end{document}

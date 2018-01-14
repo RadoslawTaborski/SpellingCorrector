@@ -96,6 +96,11 @@ namespace Interface
             return result;
         }
 
+        public List<string> RawSpellingPropositions(string word)
+        {
+            return DictionaryScanner.FindSimilarWords(word, MaxResults, LevDistance, HowManyChanges);
+        }
+
         #endregion
 
         #region Private methods
