@@ -93,7 +93,27 @@ Algorytm ten działa dla każdego słowa w osobnym wątku. Ma to za zadnie przys
 \label{chap:optym}
 Słownik użyty w projekcie składa się z blisko trzech milionów haseł. Podczas działania programu słownik ten musi być wielokrotnie przeglądany, zarówno poprzez sprawdzanie każdego wyrazu wpisanego przez użytkownika, jak i badaniu każdej powstałej kombinacji z algorytmu zamiany znaków jak i podziału na wyrazy oraz przy badaniu odległości Levenshteina w najprostszej wersji, każdy badany wyraz powinien mieć mierzoną odległość z każdym wyrazem znajdującym się w słowniku. Przy zwykłym użytkowaniu programu sprowadzałoby się to do wielu milionów operacji, a w związku z faktem iż założono w projekcie, że program ma działać możliwie w czasie rzeczywistym, podjęto próbę rozwiązania problemu z tak dużą liczbą operacji przeglądania całego słownika oraz z ograniczeniem ilości wykonywania obliczania odległości Levenshteina. W poniższych podrozdziałach opisane zostały podjęte w tym zakresie czynności.
 
-\subsection{Organizacja słownika}
 \subsection{Serializacja}
+Serializacja jest mechanizmem zamiany obiektu zapisywania obiektów, który pozwala na binarny zapis całego drzewa obiektów. Tak zapisany obiekt można w później uruchomić w dowolnym momencie pomijając cały etap tworzenia obiektów, a zastępując go procesem deserializacji, który z reguły powinien trwać szybciej niż proces tworzenia nowych obiektów. \\
+
+W projekcie serializacja użyta została do zapisania klasy odpowiedzialnej za przechowywanie słownika. Przy pierwszym uruchomieniu programu słownik jest wczytywany z pliku tekstowego, a jego hasła są w odpowiedni sposób organizowane (więcej o tym w kolejnym podrozdziale). Dlatego uruchamianie programu i organizowanie słownika za każdym razem od nowa byłoby dość mało optymalne. Klasa z wczytanym słownikiem została zserializowana i zapisana do pliku. Od tego momentu przy każdym ponownym uruchomieniu programu, sprawdzane jest czy ten plik istnieje we wskazanym miejscu i o ile nikt go nie usunął to zostaje wczytany. Operacja trwa o wiele krócej, niż odczyt pliku i organizacja słownika na nowo. \\
+
+%TODO: odsyłacz
+Przy wyborze metody serializacji posłużono się artykułem ze strony [], z którego to wynika, że jedną z najszybszych metod serializacji i deserializacji odbywa się z wykorzystaniem biblioteki \textit{ProtoBuf}, stworzonej przez firmę \textit{Google}. Metoda ta opera się o zapisywanie stanu klasy do pliku o strukturze XML, a każde pole i właściwość klasy musi zostać wyposażone w specjalny atrybut \textit{[ProtoMember(1)]} , przy czym cyfra podana w nawiasie musi być dla każdego pola unikalna.
+
+\subsection{Organizacja słownika}
+
+Jak już zostało wspomniane w poprzednim podrozdziale, przy pierwszym uruchomieniu słownik jest wczytywany z pliku tekstowego i tworzona jest z niego klasa, która przechowuje słownik ten w odpowiednio zorganizowany sposób, który ułatwia jego przeszukiwanie. 
+
+Hasła są w pamięci przechowywane w dwojaki sposób:
+\begin{itemize}
+	\item Jako zbiór list, z których każda przechowuje wyrazy o różnej długości oraz są posortowane w sposób alfabetyczny;
+	\item Jako zbiór obiektów, z których każdy przechowuje wyrazy o różnej długości oraz rozpoczynające się na różną literę;
+\end{itemize}
+
+Pierwszy sposób przechowywania haseł został przystosowany specjalnie dla przeszukiwania słownika, poprzez przeglądanie haseł o wskazanej długości. Jest to szczególnie przydatne dla algorytmu wykorzystującego odległość Levenshteina. Badane słowo ma określoną długość, a zatem prawdopodobnie użytkownikowi również chodziło o słowo podobnej długości. Tak więc nie jest przeszukiwany cały słownik, a jedynie hasła o podobnej długości. W projekcie przyjęto że mogą to być hasła o długości z przedziału od -1 do +1 długości słowa badanego.
+
+Drugi sposób przechowywania haseł został wykorzystany dla pozostałych dwóch algorytmów oraz dla sprawdzania czy dany wyraz znajduje się w słowniku. Przeszukiwanie słownika odbywa się w sposób dużo szybszy, gdyż znana jest długość słowa badanego oraz jego pierwsza litera, a oba te parametry odpowiadają indeksom dwuwymiarowego zbioru w którym przechowywane są hasła.
+
 \subsection{Praca na wielu wątkach}
 
