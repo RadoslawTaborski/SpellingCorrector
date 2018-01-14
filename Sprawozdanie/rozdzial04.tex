@@ -1,17 +1,14 @@
 \chapter{Podsumowanie}
 
-%\lssetdef
-%\lstinputlisting[captionpos=b,caption={Przykład listingu},label={lst:example},basicstyle={\footnotesize\ttfamily}]{rozdzial04/example.txt}
-
-Aplikacja stworzona na potrzeby projektu spełnia wszystkie cele oraz założenia projektowe. Pozwala ona na sprawdzenie dowolnego tekstu w języku polskim wpisanego przez użytkownika. Użytkownik ma możliwość wstawienia w każde z błędnych słów innego zasugerowanego przez system. Dzięki zoptymalizowaniu algorytmów wyszukiwania jak i interfejsu użytkownika wyszukiwanie sugestii odbywa się w czasie rzeczywistym. Dzięki zastosowaniu słownika w postaci pliku tekstowego jego modyfikacja w formie dodawania kolejnych wyrazów jest bardzo prosta. 
+Aplikacja stworzona na potrzeby projektu spełnia wszystkie cele oraz założenia projektowe. Pozwala ona na sprawdzenie dowolnego tekstu w języku polskim wpisanego przez użytkownika. Użytkownik ma możliwość wstawienia w każde z błędnych słów innego zasugerowanego przez system. Dzięki zoptymalizowaniu algorytmów wyszukiwania jak i interfejsu użytkownika wyszukiwanie sugestii odbywa się w czasie rzeczywistym. Dzięki zastosowaniu słownika w postaci pliku tekstowego jego modyfikacja w formie dodawania kolejnych wyrazów jest bardzo prosta. \\ 
 
 W celu wyszukiwania jak najtrafniejszych zamienników dla błędnie napisanych słów zaimplementowano trzy algorytmy:
 \begin{itemize}
-	\item Levenhstain -
-	\item Zamiana znaków -
-	\item Podział na wyrazy -  
+	\item Odległość Levenshteina - oblicza on odległość edycyjną dwóch porównywanych napisów, odległość ta wyrażana jest przez liczbę operacji podstawowych. Jednak konieczność przeglądania całego słownika, w dość znacznym stopniu obciąża procesor, dlatego też w projekcie zastosowano wyłącznie porównywanie słów o podobnej długości (plus minus jeden znak).
+	\item Zamiana znaków - algorytm ten zamienia ciągi znakowe odpowiadające częstym błędom ortograficznym w języku polskim i na tej podstawie utworzyć może wiele kombinacji i w pewnym stopniu uzupełnia uproszczenie zastosowane w przypadku użycia odległości Levenstheina, dla wybranych fragmentów słownika.
+	\item Podział na wyrazy - algorytm ten przeciwdziała częstym błędom w piśmie komputerowym, wynikającym z braku wciśnięcia spacji. 
 \end{itemize}
 
 Dzięki takiemu rozwiązaniu program dobrze radzi sobie niezależnie od rodzaju błędu jaki popełnił użytkownik.
 
-Aplikacja została napisana w języku C\# dlatego jest przeznaczona na komputery z systemem Windows. Korzystanie z niej nie wymaga instalacji. Dodatkowo jest to niezależna aplikacja która do działania nie wymaga dodatkowych bibliotek.
+Aplikacja została napisana w języku C\# dlatego jest przeznaczona na komputery z systemem Windows. Korzystanie z niej nie wymaga instalacji. Dodatkowo jest to niezależna aplikacja, która do działania nie wymaga dodatkowych bibliotek.
