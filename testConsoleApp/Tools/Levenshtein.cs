@@ -84,7 +84,7 @@ namespace SimilarWordsFinder.Tools
             foreach (var word in list)
             {
                 distance = Count(analyzedWord, word);
-                if (distance < levensteinDistance)
+                if (distance <= levensteinDistance)
                 {
                     foundWords.Add(new KeyValuePair<string,int>(word, distance));
                 }
