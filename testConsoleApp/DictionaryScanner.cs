@@ -52,14 +52,14 @@ namespace SimilarWordsFinder
             var watch3 = new Stopwatch();
             var result = new List<KeyValuePair<string, int>>();
 
-            int increaseRangeLC = 2;
+            int increaseRangeLC = 0;
             //Console.WriteLine("Find Start\n");
             watch3.Start();
             var list3 = UseSpaceAdder(word, howManyChanges-1);
             watch3.Stop();
 
             watch2.Start();
-            var list2 = UseLetterChanger(word, howManyChanges+1);
+            var list2 = UseLetterChanger(word, howManyChanges-1);
             watch2.Stop();
           
             var list1 = UseLevensteinAsync(word, levensteinDistance);           
@@ -87,15 +87,7 @@ namespace SimilarWordsFinder
         private static async Task<List<KeyValuePair<string, int>>> UseLevensteinAsync(string word, int levensteinDistance)
         {
             var watch = new Stopwatch();
-            watch.Start();
-
-            if (word.Length < 3)
-            {
-                levensteinDistance = 2;
-            }else if (word.Length < 6)
-            {
-                levensteinDistance = 3;
-            }        
+            watch.Start(); 
 
             Task<List<KeyValuePair<string,int>>> t2 = Levenshtein.FindSimilarWordsAsync(word, _dictionary.GetWordsByLength(word.Length - 1), levensteinDistance);
             Task<List<KeyValuePair<string, int>>> t1 = Levenshtein.FindSimilarWordsAsync(word, _dictionary.GetWordsByLength(word.Length), levensteinDistance);
